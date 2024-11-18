@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package com.toolbox.grpc;
+
+service GeneratingService {
+    rpc GenerateUID (EmptyRequest) returns (UIDResponse);
+    rpc GeneratePassword (PasswordRequest) returns (PasswordResponse);
+    rpc GenerateQRCode (QRCodeRequest) returns (QRCodeResponse);
+    rpc GenerateBarcode (BarcodeRequest) returns (BarcodeResponse);
+    rpc GenerateRandom (RandomRequest) returns (RandomResponse);
+    rpc ConvertTime (TimeConversionRequest) returns (TimeConversionResponse);
+}
+
+message EmptyRequest {}
+
+message RandomRequest {
+    int32 min = 1;
+    int32 max = 2;
+}
+
+message RandomResponse {
+    int32 random = 1;
+}
+
+message UIDResponse {
+    string uid = 1;
+}
+
+message PasswordRequest {
+    string length = 1;
+    bool hasSpecialChars = 2;
+}
+
+message PasswordResponse {
+    string password = 1;
+}
+
+message QRCodeRequest {
+    string data = 1;
+}
+
+message QRCodeResponse {
+    bytes image = 1;
+}
+
+message BarcodeRequest {
+    string data = 1;
+}
+
+message BarcodeResponse {
+    bytes image = 1;
+}
+
+message TimeConversionRequest {
+    string time = 1;
+    string from = 2;
+    string to = 3;
+}
+
+message TimeConversionResponse {
+    string convertedTime = 1;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.toolbox.grpc;
+
+option java_multiple_files = true;
+option optimize_for = LITE_RUNTIME;
+
+service FormattingService {
+    rpc ConvertFile(FormatRequest) returns (FormatResponse);
+}
+
+message FormatRequest {
+    bytes fileBytes = 1;
+    string format = 2;
+}
+
+message FormatResponse {
+    string fileBytes = 1;
+}
